@@ -1,0 +1,416 @@
+<div class="contact-page">
+  <!-- Animated Hero Section -->
+  <section class="contact-hero">
+    <div class="hero-bg">
+      <div class="floating-shape shape-1"></div>
+      <div class="floating-shape shape-2"></div>
+      <div class="floating-shape shape-3"></div>
+      <div class="floating-shape shape-4"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content fade-in-up">
+        <h1 class="page-title">
+          <span class="title-word">Conecta</span>
+          <span class="title-word">Con</span>
+          <span class="title-word">Nosotros</span>
+        </h1>
+        <p class="page-subtitle">Estamos aquí para hacer realidad tu próxima aventura sobre ruedas</p>
+        <div class="hero-icons">
+          <div class="hero-icon">💬</div>
+          <div class="hero-icon">🚴</div>
+          <div class="hero-icon">✨</div>
+        </div>
+      </div>
+    </div>
+    <div class="wave-divider">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- ============================================================
+             FORMULARIO REACTIVO CON VALIDACIONES
+        ============================================================ -->
+        <div class="contact-form-wrapper slide-in-left">
+          
+          <!-- ============================================================
+               MENSAJE DE ÉXITO
+          ============================================================ -->
+          <div *ngIf="submitted" class="success-message">
+            <div class="success-icon">✅</div>
+            <h3>¡Mensaje Enviado Exitosamente!</h3>
+            <p>Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos en menos de 24 horas.</p>
+            <button class="btn-close-success" (click)="submitted = false">Cerrar</button>
+          </div>
+
+          <div class="form-header">
+            <div class="form-icon-wrapper">
+              <div class="form-icon">✉️</div>
+            </div>
+            <h2 class="form-title">Envíanos un Mensaje</h2>
+            <p class="form-description">Responderemos en menos de 24 horas</p>
+          </div>
+          
+          <!-- ============================================================
+               FORMULARIO REACTIVO
+               [formGroup]: Conecta con el FormGroup del .ts
+               (ngSubmit): Ejecuta método enviar() al submit
+               novalidate: Desactiva validación HTML nativa
+          ============================================================ -->
+          <form [formGroup]="contactForm" (ngSubmit)="enviar()" class="contact-form" novalidate>
+            
+            <div class="form-row">
+              <!-- ============================================================
+                   CAMPO: NOMBRE
+              ============================================================ -->
+              <div class="form-group floating-label">
+                <input 
+                  type="text" 
+                  id="name" 
+                  class="form-input" 
+                  placeholder=" " 
+                  formControlName="nombre"
+                  [class.is-invalid]="isFieldInvalid('nombre')"
+                  [class.is-valid]="isFieldValid('nombre')"
+                  required
+                >
+                <label for="name">Nombre Completo *</label>
+                <div class="input-icon">👤</div>
+                
+                <!-- Mensajes de error -->
+                <div class="error-message" *ngIf="isFieldInvalid('nombre')">
+                  <span *ngIf="hasError('nombre', 'required')">⚠️ El nombre es obligatorio</span>
+                  <span *ngIf="hasError('nombre', 'minlength') && !hasError('nombre', 'required')">⚠️ Mínimo {{ getMinLengthError('nombre') }} caracteres</span>
+                </div>
+              </div>
+              
+              <!-- ============================================================
+                   CAMPO: EMAIL
+              ============================================================ -->
+              <div class="form-group floating-label">
+                <input 
+                  type="email" 
+                  id="email" 
+                  class="form-input" 
+                  placeholder=" " 
+                  formControlName="email"
+                  [class.is-invalid]="isFieldInvalid('email')"
+                  [class.is-valid]="isFieldValid('email')"
+                  required
+                >
+                <label for="email">Correo Electrónico *</label>
+                <div class="input-icon">📧</div>
+                
+                <!-- Mensajes de error -->
+                <div class="error-message" *ngIf="isFieldInvalid('email')">
+                  <span *ngIf="hasError('email', 'required')">⚠️ El correo es obligatorio</span>
+                  <span *ngIf="hasError('email', 'email') && !hasError('email', 'required')">⚠️ Formato de correo inválido</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <!-- ============================================================
+                   CAMPO: TELÉFONO (OPCIONAL)
+              ============================================================ -->
+              <div class="form-group floating-label">
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  class="form-input" 
+                  placeholder=" "
+                  formControlName="telefono"
+                  [class.is-invalid]="isFieldInvalid('telefono')"
+                  [class.is-valid]="isFieldValid('telefono')"
+                >
+                <label for="phone">Teléfono</label>
+                <div class="input-icon">📱</div>
+                
+                <!-- Mensajes de error -->
+                <div class="error-message" *ngIf="isFieldInvalid('telefono')">
+                  <span *ngIf="hasError('telefono', 'pattern')">⚠️ Ingresa un teléfono válido (10 dígitos)</span>
+                </div>
+              </div>
+              
+              <!-- ============================================================
+                   CAMPO: ASUNTO
+              ============================================================ -->
+              <div class="form-group floating-label">
+                <select 
+                  id="subject" 
+                  class="form-input" 
+                  formControlName="asunto"
+                  [class.is-invalid]="isFieldInvalid('asunto')"
+                  [class.is-valid]="isFieldValid('asunto')"
+                  required
+                >
+                  <option value="">Selecciona...</option>
+                  <option value="general">Consulta General</option>
+                  <option value="product">Información de Producto</option>
+                  <option value="support">Soporte Técnico</option>
+                  <option value="quote">Solicitar Cotización</option>
+                </select>
+                <label for="subject">Asunto *</label>
+                <div class="input-icon">📋</div>
+                
+                <!-- Mensajes de error -->
+                <div class="error-message" *ngIf="isFieldInvalid('asunto')">
+                  <span *ngIf="hasError('asunto', 'required')">⚠️ Selecciona un asunto</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- ============================================================
+                 CAMPO: MENSAJE
+            ============================================================ -->
+            <div class="form-group floating-label">
+              <textarea 
+                id="message" 
+                class="form-textarea" 
+                placeholder=" " 
+                rows="5" 
+                formControlName="mensaje"
+                [class.is-invalid]="isFieldInvalid('mensaje')"
+                [class.is-valid]="isFieldValid('mensaje')"
+                required
+              ></textarea>
+              <label for="message">Tu Mensaje *</label>
+              <div class="input-icon">💬</div>
+              
+              <!-- Contador de caracteres -->
+              <div class="char-counter">
+                {{ getCharCount('mensaje') }} / 10 caracteres mínimo
+              </div>
+              
+                <!-- Mensajes de error -->
+                <div class="error-message" *ngIf="isFieldInvalid('mensaje')">
+                  <span *ngIf="hasError('mensaje', 'required')">⚠️ El mensaje es obligatorio</span>
+                  <span *ngIf="hasError('mensaje', 'minlength') && !hasError('mensaje', 'required')">⚠️ Mínimo {{ getMinLengthError('mensaje') }} caracteres</span>
+                </div>
+            </div>
+            
+            <!-- ============================================================
+                 NOTA DE CAMPOS OBLIGATORIOS
+            ============================================================ -->
+            <div class="required-note">
+              <small>Los campos marcados con * son obligatorios</small>
+            </div>
+            
+            <!-- ============================================================
+                 BOTONES
+            ============================================================ -->
+            <div class="form-buttons">
+              <button 
+                type="submit" 
+                class="btn-submit"
+                [disabled]="submitting"
+                [class.is-loading]="submitting"
+              >
+                <span class="btn-text" *ngIf="!submitting">Enviar Mensaje</span>
+                <span class="btn-text" *ngIf="submitting">Enviando...</span>
+                <span class="btn-icon" *ngIf="!submitting">→</span>
+                <span class="btn-spinner" *ngIf="submitting">
+                  <div class="spinner"></div>
+                </span>
+                <div class="btn-shine"></div>
+              </button>
+              
+              <button 
+                type="button" 
+                class="btn-cancel"
+                (click)="cancelar()"
+                [disabled]="submitting"
+              >
+                <span>Cancelar</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Enhanced Contact Info -->
+        <div class="contact-info-wrapper slide-in-right">
+          <div class="info-header">
+            <h2 class="info-title">Información de Contacto</h2>
+            <p class="info-subtitle">Múltiples formas de comunicarte con nosotros</p>
+          </div>
+          
+          <div class="info-cards">
+            <div class="info-card card-1">
+              <div class="card-glow"></div>
+              <div class="info-icon-wrapper">
+                <div class="info-icon">📍</div>
+              </div>
+              <h3>Nuestra Ubicación</h3>
+              <p>Dosquebradas, Risaralda<br>Colombia, Suramérica</p>
+              <div class="card-accent"></div>
+            </div>
+            
+            <div class="info-card card-2">
+              <div class="card-glow"></div>
+              <div class="info-icon-wrapper">
+                <div class="info-icon">✉️</div>
+              </div>
+              <h3>Correo Electrónico</h3>
+              <p>info@bikeshop.com<br>ventas@bikeshop.com</p>
+              <div class="card-accent"></div>
+            </div>
+            
+            <div class="info-card card-3">
+              <div class="card-glow"></div>
+              <div class="info-icon-wrapper">
+                <div class="info-icon">📱</div>
+              </div>
+              <h3>Teléfono</h3>
+              <p>+57 123 456 7890<br>Lun - Sáb: 9:00 - 18:00</p>
+              <div class="card-accent"></div>
+            </div>
+            
+            <div class="info-card card-4">
+              <div class="card-glow"></div>
+              <div class="info-icon-wrapper">
+                <div class="info-icon">🌐</div>
+              </div>
+              <h3>Redes Sociales</h3>
+              <div class="social-icons">
+                <a href="#" class="social-icon facebook">
+                  <span>f</span>
+                </a>
+                <a href="#" class="social-icon instagram">
+                  <span>📷</span>
+                </a>
+                <a href="#" class="social-icon twitter">
+                  <span>🐦</span>
+                </a>
+                <a href="#" class="social-icon whatsapp">
+                  <span>💬</span>
+                </a>
+              </div>
+              <div class="card-accent"></div>
+            </div>
+          </div>
+          
+          <!-- Enhanced Map -->
+          <div class="map-container">
+            <div class="map-wrapper">
+              <div class="map-overlay">
+                <div class="location-marker">
+                  <div class="marker-pulse"></div>
+                  <div class="marker-icon">📍</div>
+                </div>
+                <div class="location-info">
+                  <h4>BikeShop Dosquebradas</h4>
+                  <p>Haz clic para ver en el mapa</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-number" data-target="5000">5000+</div>
+          <div class="stat-label">Clientes Felices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🚴</div>
+          <div class="stat-number" data-target="1200">1200+</div>
+          <div class="stat-label">Bicicletas Vendidas</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-number" data-target="24">&lt; 24</div>
+          <div class="stat-label">Horas de Respuesta</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💯</div>
+          <div class="stat-number" data-target="98">98%</div>
+          <div class="stat-label">Satisfacción</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-header">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <p class="section-subtitle">Todo lo que necesitas saber</p>
+      </div>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-icon">🚚</div>
+          <h3>¿Cuál es el tiempo de entrega?</h3>
+          <p>Realizamos entregas en 2-5 días hábiles en todo el territorio colombiano con seguimiento en tiempo real.</p>
+          <div class="faq-glow"></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-icon">🛡️</div>
+          <h3>¿Ofrecen garantía?</h3>
+          <p>Todas nuestras bicicletas incluyen garantía de 2 años en estructura y 1 año en componentes.</p>
+          <div class="faq-glow"></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-icon">🌎</div>
+          <h3>¿Hacen envíos nacionales?</h3>
+          <p>Sí, realizamos envíos a todas las ciudades principales y municipios de Colombia.</p>
+          <div class="faq-glow"></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-icon">🔄</div>
+          <h3>¿Política de devolución?</h3>
+          <p>Tienes 30 días para devolver cualquier producto sin uso en su empaque original.</p>
+          <div class="faq-glow"></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-icon">💳</div>
+          <h3>¿Métodos de pago?</h3>
+          <p>Aceptamos tarjetas de crédito, débito, PSE, Nequi y pago contraentrega.</p>
+          <div class="faq-glow"></div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-icon">🔧</div>
+          <h3>¿Servicio técnico?</h3>
+          <p>Ofrecemos servicio técnico especializado y mantenimiento preventivo para tu bicicleta.</p>
+          <div class="faq-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-content">
+        <div class="cta-icon">🚴‍♂️</div>
+        <h2 class="cta-title">¿Listo para tu próxima aventura?</h2>
+        <p class="cta-text">Explora nuestro catálogo completo de bicicletas y accesorios</p>
+        <a routerLink="/catalog" class="btn-cta">
+          <span>Ver Catálogo</span>
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,62 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Descubre Tu Próxima Aventura</h1>
+    <p class="hero-subtitle">Las mejores bicicletas para cada terreno y estilo de vida</p>
+    <div class="hero-buttons">
+      <a routerLink="/catalog" class="btn btn-primary">Ver Catálogo</a>
+      <a routerLink="/about" class="btn btn-secondary">Conocer Más</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>↓</span>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">¿Por Qué Elegirnos?</h2>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="feature-icon">{{ feature.icon }}</div>
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-description">{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Popular Bikes Section -->
+<section class="popular-bikes">
+  <div class="container">
+    <h2 class="section-title">Bicicletas Populares</h2>
+    <p class="section-subtitle">Descubre nuestros modelos más vendidos</p>
+    <div class="bikes-grid">
+      <div class="bike-card" *ngFor="let bike of popularBikes">
+        <div class="bike-image">
+          <img [src]="bike.image" [alt]="bike.name">
+          <span class="bike-category">{{ bike.category }}</span>
+        </div>
+        <div class="bike-info">
+          <h3 class="bike-name">{{ bike.name }}</h3>
+          <p class="bike-price">${{ bike.price }}</p>
+          <a [routerLink]="['/bike-detail', bike.id]" class="btn btn-view">Ver Detalles</a>
+        </div>
+      </div>
+    </div>
+    <div class="view-all">
+      <a routerLink="/catalog" class="btn btn-outline">Ver Todas las Bicicletas</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+  <div class="container">
+    <h2 class="cta-title">¿Listo para comenzar tu aventura?</h2>
+    <p class="cta-text">Encuentra la bicicleta perfecta para ti y comienza a rodar hoy mismo</p>
+    <a routerLink="/contact" class="btn btn-primary">Contáctanos</a>
+  </div>
+</section>

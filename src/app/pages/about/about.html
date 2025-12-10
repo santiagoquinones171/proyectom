@@ -1,0 +1,168 @@
+<div class="about-page">
+  
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">Nuestra Historia</span>
+        <h1 class="hero-title">Más que Bicicletas, una Pasión</h1>
+        <p class="hero-subtitle">Desde 2015, ayudando a miles de personas a descubrir la libertad sobre dos ruedas</p>
+      </div>
+    </div>
+    <div class="scroll-wave">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=800&h=600&fit=crop" alt="Nuestra tienda">
+          <div class="image-frame"></div>
+        </div>
+        <div class="story-content">
+          <span class="section-label">Quiénes Somos</span>
+          <h2 class="section-title">Construyendo el futuro de la movilidad sostenible</h2>
+          <p class="story-text">
+            BikeShop nació en 2015 con una visión clara: hacer del ciclismo una opción accesible y atractiva para todos. Lo que comenzó como una pequeña tienda en Dosquebradas se ha convertido en un referente regional en el mundo del ciclismo.
+          </p>
+          <p class="story-text">
+            Nos especializamos en ofrecer bicicletas de alta calidad para todo tipo de ciclistas, desde aquellos que buscan una solución de transporte urbano hasta los entusiastas del ciclismo de montaña y carretera. Nuestro compromiso va más allá de la venta: ofrecemos asesoría personalizada, servicio técnico especializado y una comunidad de apoyo para todos nuestros clientes.
+          </p>
+          <div class="story-signature">
+            <div class="signature-line"></div>
+            <span class="signature-text">Equipo BikeShop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nuestros Valores</span>
+        <h2 class="section-title">Lo que nos define</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card" *ngFor="let value of values; let i = index">
+          <div class="value-number">{{ (i + 1).toString().padStart(2, '0') }}</div>
+          <div class="value-icon" [ngClass]="value.icon"></div>
+          <h3 class="value-title">{{ value.title }}</h3>
+          <p class="value-description">{{ value.description }}</p>
+          <div class="value-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nuestra Trayectoria</span>
+        <h2 class="section-title">Un recorrido de éxitos</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item" *ngFor="let milestone of milestones; let i = index" [class.left]="i % 2 === 0" [class.right]="i % 2 !== 0">
+          <div class="timeline-content">
+            <div class="timeline-year">{{ milestone.year }}</div>
+            <h3 class="timeline-title">{{ milestone.title }}</h3>
+            <p class="timeline-description">{{ milestone.description }}</p>
+          </div>
+          <div class="timeline-marker"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-overlay"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" *ngFor="let stat of stats">
+          <div class="stat-number">{{ stat.number }}</div>
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Nuestro Equipo</span>
+        <h2 class="section-title">Conoce a los expertos</h2>
+        <p class="section-description">Un equipo apasionado y dedicado a brindarte la mejor experiencia</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card" *ngFor="let member of team">
+          <div class="team-image-wrapper">
+            <img [src]="member.image" [alt]="member.name" class="team-image">
+            <div class="team-overlay">
+              <p class="team-bio">{{ member.bio }}</p>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">{{ member.name }}</h3>
+            <p class="team-position">{{ member.position }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="mission-section">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="mission-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="mission-title">Nuestra Misión</h3>
+          <p class="mission-text">
+            Proporcionar soluciones de movilidad sostenible de alta calidad, promoviendo un estilo de vida saludable y activo a través del ciclismo, con un servicio excepcional y compromiso con nuestros clientes.
+          </p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3 class="mission-title">Nuestra Visión</h3>
+          <p class="mission-text">
+            Ser reconocidos como líderes en el sector del ciclismo en Colombia, expandiendo nuestra presencia y consolidándonos como la primera opción para ciclistas de todos los niveles, contribuyendo a una movilidad más sostenible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">¿Quieres ser parte de nuestra historia?</h2>
+        <p class="cta-text">Visita nuestra tienda o explora nuestro catálogo en línea</p>
+        <div class="cta-buttons">
+          <a routerLink="/catalog" class="btn btn-primary">Ver Catálogo</a>
+          <a routerLink="/contact" class="btn btn-secondary">Contáctanos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
